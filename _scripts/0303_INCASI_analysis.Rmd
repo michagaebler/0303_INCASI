@@ -446,16 +446,17 @@ group-level correlation of inter-individual differences (IA, RMSSD, STAI) with "
 
 ```{r enc  correl interdiff phase}
 # create reduced data.frame
-intdiff_phase <- merge(data_bins_enc[,c(1,53,59)], cbind(score[,c(6,7)], stai$stai_sum, kubios$rmssd), by = "vp")
-intdiff_phase$vp <- factor(intdiff_phase$vp)
+intdiff_phase <- merge(data_bins_enc[,c(1,53,59)], data_bins[,c(1,44,46,48)], by = "vp")
+# intdiff_phase$vp <- factor(intdiff_phase$vp)
 
 # analyze (relevant) correlations
 corr_intdiff_phase <- rcorr(as.matrix(intdiff_phase[-1]))
+
 corr_intdiff_phase$r[1:2,3:5]
 corr_intdiff_phase$P[1:2,3:5]
 
 # non-significant trend of STAI with systolic ratio 
-cor.test(intdiff_phase$click_lvet_rel, intdiff_phase$`stai$stai_sum`)
+cor.test(intdiff_phase$click_lvet_rel, intdiff_phase$stai_sum_score)
 
 ```
 
