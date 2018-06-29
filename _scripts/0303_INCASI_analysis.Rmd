@@ -454,7 +454,7 @@ corr_intdiff_phase <- rcorr(as.matrix(intdiff_phase[-1]))
 corr_intdiff_phase$r[1:2,3:5]
 corr_intdiff_phase$P[1:2,3:5]
 
-# nicht-signifikanter Trend von STAI mit systolic ratio
+# non-significant trend of STAI with systolic ratio 
 cor.test(intdiff_phase$click_lvet_rel, intdiff_phase$`stai$stai_sum`)
 
 ```
