@@ -439,6 +439,26 @@ cohen.d(data_bins_enc$click_lvet_rel, data_bins_enc$click_alldias_rel, paired = 
 ```
 
 
+
+#### 1.B.2.R Revision (Reviewer 1 comment 1)
+
+group-level correlation of inter-individual differences (IA, RMSSD, STAI) with "phase-associated stimulus prompting" (i.e., phase ratios click_lvet_rel and click_alldias_rel)
+
+```{r enc  correl interdiff phase}
+# create reduced data.frame
+intdiff_phase <- merge(data_bins_enc[,c(1,53,59)], cbind(score[,c(6,7)], stai$stai_sum, kubios$rmssd), by = "vp")
+intdiff_phase$vp <- factor(intdiff_phase$vp)
+
+# analyze (relevant) correlations
+corr_intdiff_phase <- rcorr(as.matrix(intdiff_phase[-1]))
+corr_intdiff_phase$r[1:2,3:5]
+corr_intdiff_phase$P[1:2,3:5]
+
+# nicht-signifikanter Trend von STAI mit systolic ratio
+cor.test(intdiff_phase$click_lvet_rel, intdiff_phase$`stai$stai_sum`)
+
+```
+
 #### 1.B.3. Plot results with ggplot
 
 a) Prepare dataframes: melt and cast dataframes
